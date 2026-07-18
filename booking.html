@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Estimate Wizard | Michiana Foundation & Waterproofing</title>
+  <meta name="description" content="Calculate your foundation repair or waterproofing cost estimate. Book a free structural inspection with our team in northern Indiana and southwestern Michigan.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .booking-intro {
+      padding-top: 12rem;
+      padding-bottom: 2rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Brand SVG Gradient definition -->
+  <svg style="width:0; height:0; position:absolute;" aria-hidden="true">
+    <linearGradient id="brand-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#f97316" />
+    </linearGradient>
+  </svg>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <a href="index.html" class="logo">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 12h3v8h14v-8h3L12 2zm4 16H8v-6h8v6zm-1-5H9v4h6v-4z"/>
+        </svg>
+        <span>MICHIANA <span class="gradient-text">FOUNDATION</span></span>
+      </a>
+      <nav id="navbar">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="booking.html" class="active">Free Estimate</a>
+      </nav>
+      <button class="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Title -->
+  <section class="booking-intro">
+    <div class="container">
+      <h1 class="section-title">Free Inspection & <span class="gradient-text">Quote Request</span></h1>
+      <p class="section-subtitle" style="max-width: 800px; margin: 0 auto;">Select structural issues to obtain an immediate project estimate range, then schedule a free on-site engineering review.</p>
+    </div>
+  </section>
+
+  <!-- Booking Wizard Section -->
+  <section class="section section-light" id="booking" style="padding-top: 2rem;">
+    <div class="container">
+      <div class="booking-wizard">
+        
+        <!-- Steps Timeline Header -->
+        <div class="wizard-steps">
+          <div id="progress-bar" class="wizard-progress"></div>
+          <div class="wizard-step active">
+            <div class="step-num">1</div>
+            <div class="step-label">Identify Issues</div>
+          </div>
+          <div class="wizard-step">
+            <div class="step-num">2</div>
+            <div class="step-label">Property Details</div>
+          </div>
+          <div class="wizard-step">
+            <div class="step-num">3</div>
+            <div class="step-label">Contact & Schedule</div>
+          </div>
+        </div>
+
+        <!-- Wizard Main Content Area -->
+        <div id="wizard-content" class="booking-grid">
+          
+          <!-- Form Steps Column -->
+          <form id="inspection-form" class="glass-card" onsubmit="event.preventDefault();">
+            
+            <!-- PANEL 1: Identify Issues -->
+            <div class="wizard-panel active" data-step="1">
+              <h2 style="font-size: 1.8rem; margin-bottom: 1rem; font-weight: 700;">What symptoms are you noticing?</h2>
+              <p style="color: var(--text-secondary); margin-bottom: 2.5rem; font-size: 0.95rem;">Select all issue indicators present in your home. These help calculate your estimate range.</p>
+              
+              <div class="selection-grid">
+                <!-- Wet Basement -->
+                <div class="selection-card">
+                  <input type="checkbox" name="issues" id="issue-wet" value="wet-basement">
+                  <div class="card-indicator"></div>
+                  <div class="selection-card-icon">💧</div>
+                  <h4>Wet Basement</h4>
+                  <p>Leaks, damp walls, standing water, sump-pump failures</p>
+                </div>
+
+                <!-- Wall Cracks -->
+                <div class="selection-card">
+                  <input type="checkbox" name="issues" id="issue-cracks" value="wall-cracks">
+                  <div class="card-indicator"></div>
+                  <div class="selection-card-icon">🧱</div>
+                  <h4>Wall Cracks</h4>
+                  <p>Vertical, diagonal, or stair-step foundation cracks</p>
+                </div>
+
+                <!-- Bowing Walls -->
+                <div class="selection-card">
+                  <input type="checkbox" name="issues" id="issue-bowing" value="bowing-walls">
+                  <div class="card-indicator"></div>
+                  <div class="selection-card-icon">📉</div>
+                  <h4>Bowing Walls</h4>
+                  <p>Basement block walls leaning inward or buckling</p>
+                </div>
+
+                <!-- Sinking Foundation -->
+                <div class="selection-card">
+                  <input type="checkbox" name="issues" id="issue-sinking" value="sinking-foundation">
+                  <div class="card-indicator"></div>
+                  <div class="selection-card-icon">🏠</div>
+                  <h4>Sinking Foundation</h4>
+                  <p>Sticking doors/windows, wall gaps, floor sloping</p>
+                </div>
+
+                <!-- Uneven Concrete -->
+                <div class="selection-card">
+                  <input type="checkbox" name="issues" id="issue-concrete" value="uneven-concrete">
+                  <div class="card-indicator"></div>
+                  <div class="selection-card-icon">📐</div>
+                  <h4>Uneven Concrete</h4>
+                  <p>Sunken driveways, sidewalks, or pool deck slabs</p>
+                </div>
+
+                <!-- Crawl Space Issue -->
+                <div class="selection-card">
+                  <input type="checkbox" name="issues" id="issue-crawl" value="crawl-space">
+                  <div class="card-indicator"></div>
+                  <div class="selection-card-icon">🕸️</div>
+                  <h4>Crawl Space Issues</h4>
+                  <p>Musty smells, damp soil floors, rotting structural floor joists</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- PANEL 2: Foundation & Property Details -->
+            <div class="wizard-panel" data-step="2">
+              <h2 style="font-size: 1.8rem; margin-bottom: 1rem; font-weight: 700;">Tell us about your property</h2>
+              <p style="color: var(--text-secondary); margin-bottom: 2.5rem; font-size: 0.95rem;">Structural requirements depend on foundation design and approximate property age.</p>
+              
+              <div class="form-group" style="margin-bottom: 2.5rem;">
+                <label style="font-size: 1rem; font-weight: 700; margin-bottom: 1rem; display: block;">Foundation Structure Type</label>
+                <div class="selection-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); margin-bottom: 0;">
+                  <!-- Full Basement -->
+                  <div class="selection-card" style="padding: 1.5rem;">
+                    <input type="radio" name="foundation-type" id="found-basement" value="Full Basement">
+                    <div class="card-indicator"></div>
+                    <div class="selection-card-icon" style="font-size: 1.8rem; margin-bottom: 0.75rem;">🏛️</div>
+                    <h4>Full Basement</h4>
+                  </div>
+                  <!-- Crawl Space -->
+                  <div class="selection-card" style="padding: 1.5rem;">
+                    <input type="radio" name="foundation-type" id="found-crawl" value="Crawl Space">
+                    <div class="card-indicator"></div>
+                    <div class="selection-card-icon" style="font-size: 1.8rem; margin-bottom: 0.75rem;">🪵</div>
+                    <h4>Crawl Space</h4>
+                  </div>
+                  <!-- Slab on Grade -->
+                  <div class="selection-card" style="padding: 1.5rem;">
+                    <input type="radio" name="foundation-type" id="found-slab" value="Slab on Grade">
+                    <div class="card-indicator"></div>
+                    <div class="selection-card-icon" style="font-size: 1.8rem; margin-bottom: 0.75rem;">🔲</div>
+                    <h4>Slab on Grade</h4>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group" style="max-width: 400px; margin-bottom: 1.5rem;">
+                <label for="property-age">Approximate Property Age</label>
+                <select id="property-age" class="form-select">
+                  <option value="">Select age range...</option>
+                  <option value="New Construction (under 5 years)">New Construction (under 5 years)</option>
+                  <option value="5-20 Years">5-20 Years</option>
+                  <option value="20-50 Years">20-50 Years</option>
+                  <option value="50+ Years">50+ Years</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- PANEL 3: Contact & Schedule -->
+            <div class="wizard-panel" data-step="3">
+              <h2 style="font-size: 1.8rem; margin-bottom: 1rem; font-weight: 700;">Where should we send your inspection report?</h2>
+              <p style="color: var(--text-secondary); margin-bottom: 2.5rem; font-size: 0.95rem;">Enter contact details. We will confirm your preferred booking date within 24 hours.</p>
+              
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                <div class="form-group">
+                  <label for="name">Full Name</label>
+                  <input type="text" id="name" class="form-input" placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                  <label for="city">Nearest City (Michiana Region)</label>
+                  <select id="city" class="form-select">
+                    <option value="">Select nearest city...</option>
+                    <option value="South Bend, IN">South Bend, IN</option>
+                    <option value="Mishawaka, IN">Mishawaka, IN</option>
+                    <option value="Elkhart, IN">Elkhart, IN</option>
+                    <option value="Goshen, IN">Goshen, IN</option>
+                    <option value="Niles, MI">Niles, MI</option>
+                  </select>
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                <div class="form-group">
+                  <label for="email">Email Address</label>
+                  <input type="email" id="email" class="form-input" placeholder="john@example.com">
+                </div>
+                <div class="form-group">
+                  <label for="phone">Phone Number</label>
+                  <input type="tel" id="phone" class="form-input" placeholder="(574) 555-0199">
+                </div>
+              </div>
+
+              <div class="form-group" style="max-width: 400px; margin-bottom: 1.5rem;">
+                <label for="pref-date">Preferred Inspection Date</label>
+                <input type="date" id="pref-date" class="form-input">
+              </div>
+            </div>
+
+            <!-- Wizard Panel Controls -->
+            <div class="wizard-buttons">
+              <button type="button" id="btn-prev" class="btn btn-secondary">Back</button>
+              <button type="button" id="btn-next" class="btn btn-primary">Continue</button>
+            </div>
+          </form>
+
+          <!-- Sidebar Estimate Summary -->
+          <div class="estimator-summary">
+            <h3>Assessment Summary</h3>
+            <div class="summary-items">
+              <div class="summary-row">
+                <span>Recommended System:</span>
+                <span id="summary-plan" style="font-weight: 600; text-align: right; max-width: 60%;">None Selected</span>
+              </div>
+              <div class="summary-row total">
+                <span>Estimated Range:</span>
+              </div>
+              <div id="summary-range" class="price-range">Select an issue to begin</div>
+            </div>
+            <div id="summary-details">
+              <p style="color: var(--text-muted); font-size: 0.9rem;">Please select one or more structural issues in Step 1 to generate a customized assessment plan.</p>
+            </div>
+            <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; border-top: 1px solid var(--border-card); padding-top: 1.5rem; margin-top: 1.5rem;">
+              *Estimates are calculated using local labor averages and structural engineering cost frameworks. On-site structural inspections are required to provide an exact contract quotation.
+            </p>
+          </div>
+        </div>
+
+        <!-- SUCCESS PANEL (Hidden Initially) -->
+        <div id="wizard-success" class="glass-card wizard-success hidden">
+          <div class="success-icon">✓</div>
+          <h3>Inspection Requested Successfully</h3>
+          <p>Thank you, <strong id="success-name">Customer</strong>! We have received your structural review request. Our scheduling coordinator will contact you at <strong id="success-phone">Phone</strong> or <strong id="success-email">Email</strong> within 1 business day to confirm your meeting.</p>
+          
+          <div class="glass-card" style="max-width: 600px; margin: 0 auto 3rem auto; text-align: left; background: rgba(15, 23, 42, 0.4); padding: 2rem;">
+            <h4 style="font-size: 1.25rem; margin-bottom: 1.25rem; font-weight: 700; border-bottom: 1px solid var(--border-card); padding-bottom: 0.5rem; color: var(--accent-amber);">Request Receipt Details</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 0.75rem 1.5rem; font-size: 0.95rem;">
+              <span style="color: var(--text-muted); font-weight: 600;">Nearest Branch:</span>
+              <span id="success-city">South Bend, IN</span>
+              
+              <span style="color: var(--text-muted); font-weight: 600;">Proposed Service Plan:</span>
+              <span id="success-plan">Water Mitigating Sub-Floor Drainage</span>
+              
+              <span style="color: var(--text-muted); font-weight: 600;">Calculated Cost Estimate:</span>
+              <span id="success-estimate" style="font-weight: 700; color: var(--accent-orange);">$4,000 - $9,000</span>
+              
+              <span style="color: var(--text-muted); font-weight: 600;">Preferred Inspection Date:</span>
+              <span id="success-date">2026-07-10</span>
+            </div>
+          </div>
+          
+          <a href="index.html" class="btn btn-primary">Return to Homepage</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 12h3v8h14v-8h3L12 2zm4 16H8v-6h8v6zm-1-5H9v4h6v-4z"/>
+            </svg>
+            <span>MICHIANA <span class="gradient-text">FOUNDATION</span></span>
+          </a>
+          <p>Engineered structural stabilization and permanent waterproofing systems. Helping property owners protect their investments across northern Indiana and southwestern Michigan since 1998.</p>
+        </div>
+        
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="booking.html">Free Inspection</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-contact">
+          <h4>Contact Us</h4>
+          <ul>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              Greater South Bend Metro, IN
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+              1-800-FOUNDATIONS (368-6328)
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              info@michianafoundation.com
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 Michiana Foundation & Waterproofing. All rights reserved.</p>
+        <p>Licensed In Indiana & Michigan | Fully Insured</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/booking.js"></script>
+</body>
+</html>

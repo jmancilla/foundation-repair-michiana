@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services | Michiana Foundation & Waterproofing</title>
+  <meta name="description" content="Explore our specialized services including steel pier stabilization, sub-floor French drains, crawl space vapor barriers, and polyurethane concrete leveling in the Michiana region.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Custom Service Page Styles */
+    .services-intro {
+      padding-top: 12rem;
+      padding-bottom: 4rem;
+      text-align: center;
+    }
+    
+    .service-detail-section {
+      padding: 6rem 0;
+      border-bottom: 1px solid var(--border-card);
+    }
+
+    .service-detail-section.section-light {
+      border-bottom-color: #e2e8f0;
+    }
+
+    .service-detail-section.section-light .service-detail-text p {
+      color: #475569;
+    }
+
+    .service-detail-section.section-light .service-detail-bullets li {
+      color: #1e293b;
+    }
+
+    .service-detail-section.section-light .tech-specs {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+
+    .service-detail-section.section-light .tech-spec-item h5 {
+      color: #64748b;
+    }
+
+    .service-detail-section.section-light .tech-spec-item p {
+      color: #0f172a;
+    }
+    
+    .service-detail-section:last-of-type {
+      border-bottom: none;
+    }
+    
+    .service-detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    
+    .service-detail-grid.reverse {
+      direction: rtl;
+    }
+    
+    .service-detail-grid.reverse .service-detail-text,
+    .service-detail-grid.reverse .service-detail-bullets {
+      direction: ltr;
+    }
+    
+    .service-detail-text h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+    
+    .service-detail-text p {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .service-detail-bullets {
+      list-style: none;
+      margin-top: 2rem;
+    }
+    
+    .service-detail-bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      font-size: 1.05rem;
+    }
+    
+    .service-detail-bullets li svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--accent-orange);
+      margin-top: 0.2rem;
+      flex-shrink: 0;
+    }
+    
+    .service-detail-grid.reverse .service-detail-bullets li svg {
+      fill: var(--accent-blue);
+    }
+    
+    .tech-specs {
+      background: rgba(30, 41, 59, 0.3);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+    
+    .tech-specs h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-amber);
+    }
+    
+    .tech-specs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    
+    .tech-spec-item h5 {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+    }
+    
+    .tech-spec-item p {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 900px) {
+      .service-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .service-detail-grid.reverse {
+        direction: ltr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Brand SVG Gradient definition -->
+  <svg style="width:0; height:0; position:absolute;" aria-hidden="true">
+    <linearGradient id="brand-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#f97316" />
+    </linearGradient>
+  </svg>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <a href="index.html" class="logo">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L2 12h3v8h14v-8h3L12 2zm4 16H8v-6h8v6zm-1-5H9v4h6v-4z"/>
+        </svg>
+        <span>MICHIANA <span class="gradient-text">FOUNDATION</span></span>
+      </a>
+      <nav id="navbar">
+        <a href="index.html">Home</a>
+        <a href="services.html" class="active">Services</a>
+        <a href="booking.html">Free Estimate</a>
+      </nav>
+      <button class="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Services Introduction -->
+  <section class="services-intro">
+    <div class="container">
+      <div class="hero-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+        </svg>
+        Industrial Grade Stabilization & Seals
+      </div>
+      <h1 class="section-title">Our Engineered <span class="gradient-text">Solutions</span></h1>
+      <p class="section-subtitle" style="max-width: 800px; margin: 0 auto;">We design and install customized foundation stabilization systems and basement waterproofing channels. Read our structural process details below.</p>
+    </div>
+  </section>
+
+  <!-- Detailed Service 1: Foundation Repair -->
+  <section class="service-detail-section" id="foundation-repair">
+    <div class="container">
+      <div class="service-detail-grid">
+        <div class="service-detail-text">
+          <h2>Foundation <span class="gradient-text">Stabilization</span> & Lift</h2>
+          <p>When soils shift, compact, or erode due to heavy water flows, foundations settle unevenly, resulting in structural cracks and bowing basement walls. We install load-tested foundation piers and anchors designed to support and lift your home permanently.</p>
+          
+          <ul class="service-detail-bullets">
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+              <div>
+                <strong>Steel Push Piers:</strong> Driven deep into solid bedrock or load-bearing soils to support foundation footings and actively lift the home back to its original grade.
+              </div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+              <div>
+                <strong>Helical Piers:</strong> Ideal for lighter structures, porches, and new additions. Helical plates are screwed deep into load-bearing soils.
+              </div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+              <div>
+                <strong>Carbon-Fiber Strapping:</strong> High-tensile carbon-fiber straps bonded directly to basement walls to stop bowing concrete blocks permanently without taking up living space.
+              </div>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="glass-card">
+          <h3>Technical Specifications</h3>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 2rem;">Our foundation repair systems are designed by structural engineers and manufactured in the USA with heavy-duty galvanized steel.</p>
+          
+          <div class="tech-specs">
+            <h4>System Stats</h4>
+            <div class="tech-specs-grid">
+              <div class="tech-spec-item">
+                <h5>Material</h5>
+                <p>Galvanized Steel</p>
+              </div>
+              <div class="tech-spec-item">
+                <h5>Support Capacity</h5>
+                <p>Up to 75,000 lbs/pier</p>
+              </div>
+              <div class="tech-spec-item">
+                <h5>Depth Range</h5>
+                <p>15 to 100+ feet</p>
+              </div>
+              <div class="tech-spec-item">
+                <h5>Warranty</h5>
+                <p>Lifetime Transferable</p>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 2.5rem; text-align: center;">
+            <a href="booking.html" class="btn btn-primary" style="width: 100%;">Schedule Pier Evaluation</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed Service 2: Basement Waterproofing -->
+  <section class="service-detail-section section-light" id="waterproofing">
+    <div class="container">
+      <div class="service-detail-grid reverse">
+        <div class="service-detail-text">
+          <h2>Basement <span class="gradient-text-blue">Waterproofing</span> Systems</h2>
+          <p>Basement walls act as a pool in water-saturated soils. Hydrostatic pressure forces groundwater leaks through seams and joints. Our sub-floor French drainage system intercepts water before it enters your home and redirects it to an industrial sump pump basin.</p>
+          
+          <ul class="service-detail-bullets">
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+              <div>
+                <strong>Interior Drainage Channels:</strong> A sub-floor perforated French drain system set in crushed granite aggregate to route leaks away from walls.
+              </div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+              <div>
+                <strong>Cast-Iron Sump Pumps:</strong> Premium dual-pump systems with smart controller boards and dedicated battery backup systems to prevent storm floodings during outages.
+              </div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+              <div>
+                <strong>Basement Wall Vapor Shield:</strong> A durable plastic barrier paneling that seals moisture and channels seepage straight down to the drain system.
+              </div>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="glass-card water-card">
+          <h3>Water Mitigation Specs</h3>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 2rem;">Our industrial sump pump and internal French drain systems run automatically, silently, and efficiently to secure your storage space.</p>
+          
+          <div class="tech-specs" style="background: rgba(59, 130, 246, 0.05); border-color: rgba(59, 130, 246, 0.2);">
+            <h4 style="color: var(--accent-blue);">System Stats</h4>
+            <div class="tech-specs-grid">
+              <div class="tech-spec-item">
+                <h5>Pump Power</h5>
+                <p>1/2 HP Cast Iron</p>
+              </div>
+              <div class="tech-spec-item">
+                <h5>Flow Rate</h5>
+                <p>4,200 Gallons/hour</p>
+              </div>
+              <div class="tech-spec-item">
+                <h5>Backup Power</h5>
+                <p>12V Battery Pack</p>
+              </div>
+              <div class="tech-spec-item">
+                <h5>Vapor Shield</h5>
+                <p>12-Mil Glass Reinforced</p>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 2.5rem; text-align: center;">
+            <a href="booking.html" class="btn btn-primary" style="width: 100%; background: var(--grad-water); box-shadow: 0 4px 20px -5px rgba(59, 130, 246, 0.4);">Schedule Water Analysis</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed Service 3: Crawl Space Encapsulation -->
+  <section class="service-detail-section" id="crawl-space">
+    <div class="container">
+      <div class="service-detail-grid">
+        <div class="service-detail-text">
+          <h2>Crawl Space <span class="gradient-text">Encapsulation</span></h2>
+          <p>Unsealed crawl spaces introduce cold drafts, musty smells, humidity, mold, and wood rot into your main floor. By sealing crawl space vents, covering dirt floors with a thick vapor barrier, and regulating moisture with a dehumidifier, we create an energy-efficient home footprint.</p>
+          
+          <ul class="service-detail-bullets">
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+              <div>
+                <strong>20-Mil Polyethylene Vapor Barrier:</strong> Heavy-duty, white vapor barrier sheet covering the floor and walls, preventing radon gas and ground humidity from escaping.
+              </div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+              <div>
+                <strong>Structural Dehumidification:</strong> Automated low-temperature dehumidifiers that maintain crawl space humidity levels below 55% to stop mold growth.
+              </div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+              <div>
+                <strong>Crawl Space Vent Seals:</strong> Durable vent covers and foam rim-joist insulation packages that block humid summer air and cold winter winds.
+              </div>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="glass-card">
+          <h3>Encapsulation Specifications</h3>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 2rem;">A fully encapsulated crawl space acts like a finished cellar, preventing wood pests, decreasing utility costs, and improving indoor air quality.</p>
+          
+          <div class="tech-specs">
+            <h4>System Stats</h4>
+            <div class="tech-specs-grid">
+              <div class="tech-spec-item">
+                <h5>Barrier Thickness</h5>
+                <p>20-Mil (Anti-Microbial)</p>
+              </div>
+              <div class="tech-spec-item">
+                <h5>Dehumidifier Output</h5>
+                <p>95 Pints/day</p>
+              </div>
+              <div class="tech-spec-item">
+                <h5>Airflow Rating</h5>
+                <p>265 CFM</p>
+              </div>
+              <div class="tech-spec-item">
+                <h5>Warranty</h5>
+                <p>25-Year Protection Plan</p>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 2.5rem; text-align: center;">
+            <a href="booking.html" class="btn btn-primary" style="width: 100%;">Get Encapsulation Estimate</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed Service 4: Concrete Repair & Leveling -->
+  <section class="service-detail-section section-light" id="concrete-leveling">
+    <div class="container">
+      <div class="service-detail-grid reverse">
+        <div class="service-detail-text">
+          <h2>Concrete <span class="gradient-text">Lifting</span> & Slabjacking</h2>
+          <p>Sunken driveways, uneven sidewalks, and cracking pool decks are dangerous tripping hazards and collect ponding water. Instead of breaking up and replacing the concrete, we inject structural polyurethane foam below the slabs to lift and support them permanently.</p>
+          
+          <ul class="service-detail-bullets">
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+              <div>
+                <strong>Polyurethane Injecting (Slabjacking):</strong> Small pennies-sized holes are drilled, and expanding polymer foam is injected to lift concrete panels within minutes.
+              </div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+              <div>
+                <strong>Slab Crack & Joint Sealing:</strong> Flexible polyurethane joint sealers are applied to stop water infiltration from eroding subgrade soils.
+              </div>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+              <div>
+                <strong>Basement Slab Leveling:</strong> Stabilizing hollow spots below basement slabs to prevent cracking before floor replacements.
+              </div>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="glass-card">
+          <h3>Polymer Leveling Specs</h3>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 2rem;">Slabjacking is less disruptive, costs up to 60% less than concrete replacements, and can support vehicle traffic within 30 minutes of injection.</p>
+          
+          <div class="tech-specs">
+            <h4>Material Stats</h4>
+            <div class="tech-specs-grid">
+              <div class="tech-spec-item">
+                <h5>Polymer Density</h5>
+                <p>4.0 lbs/cubic foot</p>
+              </div>
+              <div class="tech-spec-item">
+                <h5>Cure Time</h5>
+                <p>15 to 30 Minutes</p>
+              </div>
+              <div class="tech-spec-item">
+                <h5>Compressive Strength</h5>
+                <p>100 PSI (Typical)</p>
+              </div>
+              <div class="tech-spec-item">
+                <h5>Eco-Safe</h5>
+                <p>Yes (Non-toxic)</p>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top: 2.5rem; text-align: center;">
+            <a href="booking.html" class="btn btn-primary" style="width: 100%;">Schedule Slab Leveling</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="section" style="padding: 6rem 0; background: linear-gradient(135deg, rgba(245,158,11,0.06) 0%, rgba(249,115,22,0.06) 100%); border-top: 1px solid var(--border-card); border-bottom: 1px solid var(--border-card);">
+    <div class="container" style="text-align: center;">
+      <h2 style="font-size: 2.8rem; font-weight: 800; margin-bottom: 1rem;">Not Sure What Service You Need?</h2>
+      <p style="font-size: 1.2rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto 2.5rem auto;">We offer free professional diagnostics. Our structural experts will measure foundation levels, test humidity levels, and outline permanent repair solutions.</p>
+      <a href="booking.html" class="btn btn-primary">Book Free Inspection</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 12h3v8h14v-8h3L12 2zm4 16H8v-6h8v6zm-1-5H9v4h6v-4z"/>
+            </svg>
+            <span>MICHIANA <span class="gradient-text">FOUNDATION</span></span>
+          </a>
+          <p>Engineered structural stabilization and permanent waterproofing systems. Helping property owners protect their investments across northern Indiana and southwestern Michigan since 1998.</p>
+        </div>
+        
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="booking.html">Free Inspection</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-contact">
+          <h4>Contact Us</h4>
+          <ul>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              Greater South Bend Metro, IN
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+              1-800-FOUNDATIONS (368-6328)
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+              info@michianafoundation.com
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 Michiana Foundation & Waterproofing. All rights reserved.</p>
+        <p>Licensed In Indiana & Michigan | Fully Insured</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
