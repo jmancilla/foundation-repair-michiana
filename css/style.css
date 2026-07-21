@@ -250,8 +250,9 @@ header .container {
 }
 
 .logo svg {
-  width: 32px;
-  height: 32px;
+  width: 1.618em;
+  height: 1.618em;
+  flex-shrink: 0;
   fill: url(#brand-gradient);
 }
 
