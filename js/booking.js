@@ -153,6 +153,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 3. Navigation Controls
   function updateWizardUI() {
+    // Ensure success card is strictly hidden during wizard steps
+    if (wizardSuccess) {
+      wizardSuccess.style.display = 'none';
+      wizardSuccess.classList.add('hidden');
+    }
+    if (wizardContent) {
+      wizardContent.style.display = '';
+    }
+
     // Update active step headers
     steps.forEach((step, idx) => {
       if (idx + 1 < currentStep) {
@@ -291,6 +300,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // Toggle visibility
       wizardContent.style.display = 'none';
+      wizardSuccess.style.display = 'block';
       wizardSuccess.classList.remove('hidden');
       
       // Scroll to top of wizard
