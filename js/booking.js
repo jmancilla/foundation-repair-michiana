@@ -14,6 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Set hidden timestamp for server-side time-trap anti-spam
+  const hpTime = document.getElementById('hp-time');
+  if (hpTime) {
+    hpTime.value = Math.floor(Date.now() / 1000);
+  }
+
   // Wizard state
   let currentStep = 1;
   const totalSteps = 3;
@@ -277,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const city = document.getElementById('city').value;
     const date = document.getElementById('pref-date').value;
     const foundationType = document.querySelector('input[name="foundation-type"]:checked').value;
-    
+
     const checkedIssues = document.querySelectorAll('input[name="issues"]:checked');
     const issuesList = [];
     checkedIssues.forEach(i => {
@@ -288,7 +294,43 @@ document.addEventListener('DOMContentLoaded', () => {
     const rangeEstimate = summaryRange.textContent;
     const recommendedPlan = summaryPlan.textContent;
 
-    // Build success markup dynamically
+    // Attach wizard context to the form payload
+    document.getElementById('hidden-issues').value = issuesList.join(', ');
+    document.getElementById('hidden-foundation').value = foundationType;
+    document.getElementById('hidden-plan').value = recommendedPlan;
+    document.getElementById('hidden-estimate').value = rangeEstimate;
+
+    // Disable the submit button while the request is in flight
+    if (btnNext) {
+      btnNext.disabled = true;
+      btnNext.textContent = 'Sending...';
+    }
+
+    fetch('lead.php', {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: new FormData(bookingForm)
+    })
+      .then(response => {
+        if (!response.ok) throw new Error('Request failed');
+        return response.json();
+      })
+      .then(data => {
+        if (!data.ok) throw new Error('Request failed');
+        showSuccess(name, phone, email, city, recommendedPlan, rangeEstimate, date);
+      })
+      .catch(() => {
+        alert('Sorry, we could not submit your request. Please try again or call (574) 800-4540.');
+      })
+      .finally(() => {
+        if (btnNext) {
+          btnNext.disabled = false;
+          btnNext.textContent = 'Submit Request';
+        }
+      });
+  }
+
+  function showSuccess(name, phone, email, city, recommendedPlan, rangeEstimate, date) {
     if (wizardSuccess) {
       document.getElementById('success-name').textContent = name;
       document.getElementById('success-phone').textContent = phone;
@@ -297,12 +339,12 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('success-plan').textContent = recommendedPlan;
       document.getElementById('success-estimate').textContent = rangeEstimate;
       document.getElementById('success-date').textContent = date ? date : 'Flexible';
-      
+
       // Toggle visibility
       wizardContent.style.display = 'none';
       wizardSuccess.style.display = 'block';
       wizardSuccess.classList.remove('hidden');
-      
+
       // Scroll to top of wizard
       document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
     }

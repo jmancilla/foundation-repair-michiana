@@ -238,7 +238,7 @@
 
               <div class="form-group" style="max-width: 400px; margin-bottom: 1.5rem;">
                 <label for="property-age">Approximate Property Age</label>
-                <select id="property-age" class="form-select">
+                <select id="property-age" name="property-age" class="form-select">
                   <option value="">Select age range...</option>
                   <option value="New Construction (under 5 years)">New Construction (under 5 years)</option>
                   <option value="5-20 Years">5-20 Years</option>
@@ -258,11 +258,11 @@
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
                 <div class="form-group">
                   <label for="name">Full Name</label>
-                  <input type="text" id="name" class="form-input" placeholder="John Doe">
+                  <input type="text" id="name" name="name" class="form-input" placeholder="John Doe" required>
                 </div>
                 <div class="form-group">
                   <label for="city">Nearest City (Michiana Region)</label>
-                  <select id="city" class="form-select">
+                  <select id="city" name="city" class="form-select" required>
                     <option value="">Select nearest city...</option>
                     <option value="South Bend, IN">South Bend, IN</option>
                     <option value="Mishawaka, IN">Mishawaka, IN</option>
@@ -276,19 +276,31 @@
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
                 <div class="form-group">
                   <label for="email">Email Address</label>
-                  <input type="email" id="email" class="form-input" placeholder="john@example.com">
+                  <input type="email" id="email" name="email" class="form-input" placeholder="john@example.com" required>
                 </div>
                 <div class="form-group">
                   <label for="phone">Phone Number</label>
-                  <input type="tel" id="phone" class="form-input" placeholder="(574) 555-0199">
+                  <input type="tel" id="phone" name="phone" class="form-input" placeholder="(574) 555-0199" required>
                 </div>
               </div>
 
               <div class="form-group" style="max-width: 400px; margin-bottom: 1.5rem;">
                 <label for="pref-date">Preferred Inspection Date</label>
-                <input type="date" id="pref-date" class="form-input">
+                <input type="date" id="pref-date" name="pref-date" class="form-input">
               </div>
             </div>
+
+            <!-- Hidden fields: populated by booking.js on submit -->
+            <input type="hidden" name="issues" id="hidden-issues" value="">
+            <input type="hidden" name="foundation-type" id="hidden-foundation" value="">
+            <input type="hidden" name="plan" id="hidden-plan" value="">
+            <input type="hidden" name="estimate" id="hidden-estimate" value="">
+
+            <!-- Honeypot anti-spam field (must remain empty) -->
+            <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; overflow: hidden;">
+
+            <!-- Time-trap anti-spam field: set to page-load timestamp by booking.js -->
+            <input type="hidden" name="hp-time" id="hp-time" value="">
 
             <!-- Wizard Panel Controls -->
             <div class="wizard-buttons">
@@ -414,7 +426,7 @@
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2026 FOUNDATION WORKS, All Rights Reserved.</p>
+        <p>&copy; 2026 FOUNDATION WORKS, All Rights Reserved. | <a href="privacy.html">Privacy Policy</a></p>
         <p style="font-size: 0.75rem; color: var(--text-muted);">FOUNDATION WORKS is a referral
           service, we are not a licensed contractor and do not perform repair work ourselves. We connect homeowners with
           independent, licensed local contractors.</p>
