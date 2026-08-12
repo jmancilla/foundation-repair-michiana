@@ -9,7 +9,7 @@
 
 declare(strict_types=1);
 
-const RECIPIENT = 'info@tecnomedia.net';
+const RECIPIENT = 'info@foundationrepairmichiana.com';
 const SENDER    = 'info@foundationrepairmichiana.com';
 const SITE_NAME = 'FOUNDATION WORKS';
 
