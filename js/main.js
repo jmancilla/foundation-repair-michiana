@@ -42,12 +42,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const links = document.querySelectorAll('nav a');
   links.forEach(link => {
     const href = link.getAttribute('href');
-    // Simple matching logic
-    if (href === 'index.html' && (currentPath.endsWith('/') || currentPath.endsWith('index.html'))) {
-      link.classList.add('active');
-    } else if (currentPath.includes(href) && href !== 'index.html' && href !== '#') {
-      link.classList.add('active');
+    if (!href || href === '#') return;
+
+    let isMatch = false;
+    if (href === '/') {
+      // Home: active only on the site root / index page
+      isMatch = currentPath === '/' || currentPath.endsWith('/') || currentPath.endsWith('index.html');
+    } else {
+      // Match the filename at the end of the URL
+      const hrefKey = href.replace(/^\.\//, '').split(/[?#]/)[0].replace(/\/+$/, '');
+      const pathKey = currentPath.split(/[?#]/)[0].split('/').filter(Boolean).pop() || '';
+      isMatch = hrefKey === pathKey;
     }
+
+    if (isMatch) link.classList.add('active');
   });
 
   // 4. Testimonials Carousel

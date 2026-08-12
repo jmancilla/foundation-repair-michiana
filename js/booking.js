@@ -1,13 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Bail out if this page does not contain the booking wizard
+  if (!document.getElementById('inspection-form') || !document.getElementById('btn-next')) return;
+
   // Pre-fill city from URL query params
   const urlParams = new URLSearchParams(window.location.search);
   const cityParam = urlParams.get('city');
   const citySelect = document.getElementById('city');
   if (citySelect && cityParam) {
-    // Convert e.g., 'south-bend' to 'South Bend' or match option values
+    const cityKey = (str) => str.toLowerCase().replace(/,.*$/, '').replace(/[^a-z]/g, '');
+    const target = cityKey(cityParam);
     for (let option of citySelect.options) {
-      if (option.value.toLowerCase() === cityParam.toLowerCase() || 
-          option.value.toLowerCase().replace(/\s+/g, '-') === cityParam.toLowerCase()) {
+      if (cityKey(option.value) === target) {
         citySelect.value = option.value;
         break;
       }
@@ -39,6 +42,69 @@ document.addEventListener('DOMContentLoaded', () => {
   const summaryRange = document.getElementById('summary-range');
   const summaryDetails = document.getElementById('summary-details');
 
+  // Inline validation helpers
+  function setFieldError(errorEl, inputEl, message) {
+    if (errorEl) {
+      errorEl.textContent = message;
+      errorEl.hidden = false;
+    }
+    if (inputEl) {
+      inputEl.classList.add('field-invalid');
+    }
+  }
+
+  function clearFieldError(errorEl, inputEl) {
+    if (errorEl) errorEl.hidden = true;
+    if (inputEl) inputEl.classList.remove('field-invalid');
+  }
+
+  function clearErrors() {
+    document.querySelectorAll('.wizard-error').forEach(el => {
+      el.hidden = true;
+    });
+    document.querySelectorAll('.field-invalid').forEach(el => {
+      el.classList.remove('field-invalid');
+    });
+  }
+
+  // Clear individual field errors as the user corrects their input
+  ['name', 'email', 'phone', 'city', 'property-age', 'pref-date'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('input', () => clearFieldError(document.getElementById('error-' + id), el));
+      el.addEventListener('change', () => clearFieldError(document.getElementById('error-' + id), el));
+    }
+  });
+
+  // Toggle the date field when "no preferred date" is selected
+  const flexDateToggle = document.getElementById('flex-date');
+  const prefDateInput = document.getElementById('pref-date');
+  if (flexDateToggle && prefDateInput) {
+    flexDateToggle.addEventListener('change', () => {
+      if (flexDateToggle.checked) {
+        prefDateInput.value = '';
+        prefDateInput.disabled = true;
+      } else {
+        prefDateInput.disabled = false;
+      }
+    });
+  }
+
+  // Format phone number as (xxx) xxx-xxxx while the user types
+  const phoneInput = document.getElementById('phone');
+  if (phoneInput) {
+    phoneInput.addEventListener('input', () => {
+      const digits = phoneInput.value.replace(/\D/g, '').slice(0, 10);
+      if (digits.length > 6) {
+        phoneInput.value = `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+      } else if (digits.length > 3) {
+        phoneInput.value = `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+      } else {
+        phoneInput.value = digits;
+      }
+    });
+  }
+
   // Base costs for estimation
   const costMap = {
     'wet-basement': { low: 3500, high: 9000, name: 'Waterproofing & Drainage' },
@@ -59,6 +125,17 @@ document.addEventListener('DOMContentLoaded', () => {
       card.classList.add('selected');
     }
 
+    // Show/hide the foundation error immediately when the group changes
+    function updateFoundationError() {
+      if (input.type !== 'radio' || input.name !== 'foundation-type') return;
+      const foundation = document.querySelector('input[name="foundation-type"]:checked');
+      if (foundation) {
+        clearFieldError(document.getElementById('error-foundation'), null);
+      } else {
+        setFieldError(document.getElementById('error-foundation'), null, 'Please select your foundation structure type.');
+      }
+    }
+
     card.addEventListener('click', (e) => {
       // Avoid double triggering if clicking input label/checkbox directly
       if (e.target.tagName !== 'INPUT') {
@@ -66,10 +143,12 @@ document.addEventListener('DOMContentLoaded', () => {
           input.checked = !input.checked;
         } else if (input.type === 'radio') {
           const groupName = input.name;
+          const wasChecked = input.checked;
           document.querySelectorAll(`input[name="${groupName}"]`).forEach(radio => {
             radio.closest('.selection-card').classList.remove('selected');
+            radio.checked = false;
           });
-          input.checked = true;
+          input.checked = !wasChecked;
         }
         input.dispatchEvent(new Event('change'));
       }
@@ -90,6 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           card.classList.remove('selected');
         }
+        updateFoundationError();
         calculateEstimate();
       });
     }
@@ -159,6 +239,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 3. Navigation Controls
   function updateWizardUI() {
+    clearErrors();
+
     // Ensure success card is strictly hidden during wizard steps
     if (wizardSuccess) {
       wizardSuccess.style.display = 'none';
@@ -214,38 +296,72 @@ document.addEventListener('DOMContentLoaded', () => {
     if (step === 1) {
       const selected = document.querySelectorAll('input[name="issues"]:checked');
       if (selected.length === 0) {
-        alert('Please select at least one issue indicator to proceed.');
+        setFieldError(document.getElementById('error-issues'), null, 'Please select at least one issue indicator to proceed.');
         return false;
       }
     } else if (step === 2) {
       const foundationType = document.querySelector('input[name="foundation-type"]:checked');
       const propertyAge = document.getElementById('property-age').value;
-      
+
       if (!foundationType) {
-        alert('Please select your foundation structure type.');
+        setFieldError(document.getElementById('error-foundation'), null, 'Please select your foundation structure type.');
         return false;
       }
       if (!propertyAge) {
-        alert('Please provide the approximate age of your home.');
+        setFieldError(document.getElementById('error-age'), document.getElementById('property-age'), 'Please provide the approximate age of your home.');
         return false;
       }
     } else if (step === 3) {
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const city = document.getElementById('city').value;
+      const nameEl = document.getElementById('name');
+      const emailEl = document.getElementById('email');
+      const phoneEl = document.getElementById('phone');
+      const cityEl = document.getElementById('city');
+      const dateEl = document.getElementById('pref-date');
+      const flexDate = document.getElementById('flex-date');
 
-      if (!name || !email || !phone || !city) {
-        alert('Please fill out all contact information fields.');
-        return false;
+      const name = nameEl.value.trim();
+      const email = emailEl.value.trim();
+      const phone = phoneEl.value.trim();
+      const city = cityEl.value;
+
+      let valid = true;
+
+      if (name.length < 2) {
+        setFieldError(document.getElementById('error-name'), nameEl, 'Please enter your full name.');
+        valid = false;
       }
-      
-      // Simple email validation
+
+      if (!city) {
+        setFieldError(document.getElementById('error-city'), cityEl, 'Please select your nearest city.');
+        valid = false;
+      }
+
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        alert('Please enter a valid email address.');
-        return false;
+      if (!email || email.length > 254 || !emailRegex.test(email)) {
+        setFieldError(document.getElementById('error-email'), emailEl, 'Please enter a valid email address.');
+        valid = false;
       }
+
+      const phoneDigits = phone.replace(/\D/g, '');
+      if (phoneDigits.length !== 10) {
+        setFieldError(document.getElementById('error-phone'), phoneEl, 'Please enter a valid 10-digit phone number.');
+        valid = false;
+      }
+
+      if (!flexDate || !flexDate.checked) {
+        if (dateEl.value) {
+          const today = new Date();
+          const todayStr = today.getFullYear() + '-' +
+            String(today.getMonth() + 1).padStart(2, '0') + '-' +
+            String(today.getDate()).padStart(2, '0');
+          if (dateEl.value < todayStr) {
+            setFieldError(document.getElementById('error-date'), dateEl, 'Please choose a future date or select "I don\'t have a preferred date".');
+            valid = false;
+          }
+        }
+      }
+
+      return valid;
     }
     return true;
   }

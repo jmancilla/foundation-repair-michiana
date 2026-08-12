@@ -86,12 +86,12 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 // --- Optional wizard context (sanitized for output) ---
-$issueList   = trim((string) ($_POST['issues'] ?? ''));
-$foundation  = trim((string) ($_POST['foundation-type'] ?? ''));
+$issueList   = trim((string) ($_POST['lead-issues'] ?? ''));
+$foundation  = trim((string) ($_POST['lead-foundation'] ?? ''));
 $propertyAge = trim((string) ($_POST['property-age'] ?? ''));
 $prefDate    = trim((string) ($_POST['pref-date'] ?? ''));
-$plan        = trim((string) ($_POST['plan'] ?? ''));
-$estimate    = trim((string) ($_POST['estimate'] ?? ''));
+$plan        = trim((string) ($_POST['lead-plan'] ?? ''));
+$estimate    = trim((string) ($_POST['lead-estimate'] ?? ''));
 
 $safe = function ($v) {
     return htmlspecialchars(strip_tags((string) $v), ENT_QUOTES, 'UTF-8');

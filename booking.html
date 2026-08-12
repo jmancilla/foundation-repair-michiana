@@ -60,6 +60,48 @@
       padding-bottom: 2rem;
       text-align: center;
     }
+
+    .wizard-error {
+      color: #dc2626;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 0.6rem;
+    }
+
+    .field-invalid {
+      border-color: #dc2626 !important;
+    }
+
+    .flex-date-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .flex-date-row input[type="checkbox"] {
+      width: 1.05rem;
+      height: 1.05rem;
+      accent-color: var(--accent-orange);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 640px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+    }
   </style>
   <link rel="icon" type="image/png" href="images/favicon.png">
 </head>
@@ -136,7 +178,7 @@
         <div id="wizard-content" class="booking-grid">
 
           <!-- Form Steps Column -->
-          <form id="inspection-form" class="glass-card" onsubmit="event.preventDefault();">
+          <form id="inspection-form" class="glass-card" onsubmit="event.preventDefault();" novalidate>
 
             <!-- PANEL 1: Identify Issues -->
             <div class="wizard-panel active" data-step="1">
@@ -199,6 +241,8 @@
                   <p>Musty smells, damp soil floors, rotting structural floor joists</p>
                 </div>
               </div>
+              <p class="wizard-error" id="error-issues" hidden>Please select at least one issue indicator to
+                proceed.</p>
             </div>
 
             <!-- PANEL 2: Foundation & Property Details -->
@@ -233,8 +277,16 @@
                     <div class="selection-card-icon" style="font-size: 1.8rem; margin-bottom: 0.75rem;"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14"/></svg></div>
                     <h4>Slab on Grade</h4>
                   </div>
+                  <!-- Other -->
+                  <div class="selection-card" style="padding: 1.5rem;">
+                    <input type="radio" name="foundation-type" id="found-other" value="Other">
+                    <div class="card-indicator"></div>
+                    <div class="selection-card-icon" style="font-size: 1.8rem; margin-bottom: 0.75rem;"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></div>
+                    <h4>Other</h4>
+                  </div>
                 </div>
               </div>
+              <p class="wizard-error" id="error-foundation" hidden>Please select your foundation structure type.</p>
 
               <div class="form-group" style="max-width: 400px; margin-bottom: 1.5rem;">
                 <label for="property-age">Approximate Property Age</label>
@@ -246,6 +298,7 @@
                   <option value="50+ Years">50+ Years</option>
                 </select>
               </div>
+              <p class="wizard-error" id="error-age" hidden>Please provide the approximate age of your home.</p>
             </div>
 
             <!-- PANEL 3: Contact & Schedule -->
@@ -255,10 +308,11 @@
               <p style="color: var(--text-secondary); margin-bottom: 2.5rem; font-size: 0.95rem;">Enter contact details.
                 We will confirm your preferred booking date within 24 hours.</p>
 
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+              <div class="contact-grid">
                 <div class="form-group">
                   <label for="name">Full Name</label>
                   <input type="text" id="name" name="name" class="form-input" placeholder="John Doe" required>
+                  <p class="wizard-error" id="error-name" hidden>Please enter your full name.</p>
                 </div>
                 <div class="form-group">
                   <label for="city">Nearest City (Michiana Region)</label>
@@ -270,31 +324,40 @@
                     <option value="Goshen, IN">Goshen, IN</option>
                     <option value="Niles, MI">Niles, MI</option>
                   </select>
+                  <p class="wizard-error" id="error-city" hidden>Please select your nearest city.</p>
                 </div>
               </div>
 
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+              <div class="contact-grid">
                 <div class="form-group">
                   <label for="email">Email Address</label>
                   <input type="email" id="email" name="email" class="form-input" placeholder="john@example.com" required>
+                  <p class="wizard-error" id="error-email" hidden>Please enter a valid email address.</p>
                 </div>
                 <div class="form-group">
                   <label for="phone">Phone Number</label>
                   <input type="tel" id="phone" name="phone" class="form-input" placeholder="(574) 555-0199" required>
+                  <p class="wizard-error" id="error-phone" hidden>Please enter a valid 10-digit phone number.</p>
                 </div>
               </div>
 
               <div class="form-group" style="max-width: 400px; margin-bottom: 1.5rem;">
                 <label for="pref-date">Preferred Inspection Date</label>
                 <input type="date" id="pref-date" name="pref-date" class="form-input">
+                <div class="flex-date-row">
+                  <input type="checkbox" id="flex-date" name="flex-date" value="1">
+                  <label for="flex-date" style="margin: 0;">I don't have a preferred date</label>
+                </div>
+                <p class="wizard-error" id="error-date" hidden>Please choose a future date or select "I don't have a
+                  preferred date".</p>
               </div>
             </div>
 
-            <!-- Hidden fields: populated by booking.js on submit -->
-            <input type="hidden" name="issues" id="hidden-issues" value="">
-            <input type="hidden" name="foundation-type" id="hidden-foundation" value="">
-            <input type="hidden" name="plan" id="hidden-plan" value="">
-            <input type="hidden" name="estimate" id="hidden-estimate" value="">
+            <!-- Hidden fields: populated by booking.js on submit (prefixed names avoid clashing with wizard inputs) -->
+            <input type="hidden" name="lead-issues" id="hidden-issues" value="">
+            <input type="hidden" name="lead-foundation" id="hidden-foundation" value="">
+            <input type="hidden" name="lead-plan" id="hidden-plan" value="">
+            <input type="hidden" name="lead-estimate" id="hidden-estimate" value="">
 
             <!-- Honeypot anti-spam field (must remain empty) -->
             <input type="text" name="website" id="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; overflow: hidden;">
@@ -428,7 +491,7 @@
       <div class="footer-bottom">
         <p>&copy; 2026 FOUNDATION WORKS, All Rights Reserved. | <a href="privacy.html">Privacy Policy</a></p>
         <p style="font-size: 0.75rem; color: var(--text-muted);">FOUNDATION WORKS is a referral
-          service, we are not a licensed contractor and do not perform repair work ourselves. We connect homeowners with
+          service; we are not a licensed contractor and do not perform repair work ourselves. We connect homeowners with
           independent, licensed local contractors.</p>
       </div>
     </div>
