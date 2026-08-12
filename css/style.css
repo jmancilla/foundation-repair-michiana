@@ -641,7 +641,7 @@ nav a:hover::after, nav a.active::after {
 
 /* Local SEO Page Styles (Sub-pages layout) */
 .local-hero {
-  padding-top: 12rem;
+  padding-top: 4rem;
   padding-bottom: 6rem;
   text-align: center;
   position: relative;
@@ -1158,8 +1158,8 @@ footer {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 4rem;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
   margin-bottom: 4rem;
 }
 
@@ -1589,5 +1589,206 @@ footer {
     bottom: 16px;
     justify-content: center;
     padding: 14px 18px;
+  }
+}
+
+/* ===== Internal Linking & Local SEO Components ===== */
+
+/* Breadcrumbs */
+.breadcrumbs {
+  position: relative;
+  z-index: 5;
+  padding-top: 8.5rem;
+}
+
+.breadcrumbs ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.breadcrumbs li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.breadcrumbs li + li::before {
+  content: '/';
+  color: var(--text-muted);
+  opacity: 0.5;
+}
+
+.breadcrumbs a {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.breadcrumbs a:hover {
+  color: var(--accent-amber);
+}
+
+.breadcrumbs [aria-current="page"] {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Homepage City Card Service Links */
+.city-services {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 1.5rem 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-card);
+  text-align: left;
+}
+
+.city-services a {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.city-services a::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--border-card);
+  flex-shrink: 0;
+  transition: var(--transition-fast);
+}
+
+.city-services a:hover {
+  color: var(--accent-amber);
+}
+
+.city-services a:hover::before {
+  background: var(--accent-amber);
+}
+
+/* Services-by-City Area Cards */
+.service-area-card .city-badge {
+  margin-bottom: 0;
+}
+
+.service-area-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.service-area-head h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.service-area-card > p {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.service-area-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.service-area-links a {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.service-area-links a:hover {
+  color: var(--accent-amber);
+  padding-left: 5px;
+}
+
+.service-area-links .service-area-hub {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-card);
+}
+
+.service-area-links .service-area-hub a {
+  color: var(--accent-orange);
+  font-weight: 600;
+}
+
+/* Cross-City "Serving the Michiana Region" Section */
+.region-section {
+  border-top: 1px solid var(--border-card);
+  background: rgba(2, 6, 23, 0.5);
+}
+
+.region-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.region-card {
+  background: rgba(30, 41, 59, 0.4);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  transition: var(--transition-normal);
+}
+
+.region-card:hover {
+  border-color: rgba(245, 158, 11, 0.3);
+  transform: translateY(-5px);
+}
+
+.region-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.region-card > p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.region-card ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.region-card ul a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.region-card ul a:hover {
+  color: var(--accent-amber);
+  padding-left: 5px;
+}
+
+.region-card ul .region-hub a {
+  color: var(--accent-orange);
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
 }
